@@ -2,6 +2,7 @@ package com.aurea.automation.recoveryreporting;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.DockerCmdExecFactory;
+import com.github.dockerjava.api.model.Info;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
@@ -15,7 +16,7 @@ public class Bootstrap {
 //		StreamUtils s;
 		
 		DockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()
-				.withDockerHost("unix:///var/run/docker.sock").withDockerTlsVerify(true)
+				.withDockerHost("unix:///var/run/docker.sock").withDockerTlsVerify(false)
 				.build();
 		// using jaxrs/jersey implementation here (netty impl is also available)
 		DockerCmdExecFactory dockerCmdExecFactory = new JerseyDockerCmdExecFactory().withReadTimeout(1000)
@@ -23,6 +24,9 @@ public class Bootstrap {
 		
 		DockerClient dockerClient = DockerClientBuilder.getInstance(config)
 				.withDockerCmdExecFactory(dockerCmdExecFactory).build();
+		
+		Info info = dockerClient.infoCmd().exec();
+		System.out.print(info);
 	}
 
 }
