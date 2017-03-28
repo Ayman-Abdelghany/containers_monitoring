@@ -11,10 +11,11 @@ public class Bootstrap {
 
 	public static void main(String[] args) {
 		// System.out.println("start-----");
+		
+//		StreamUtils s;
+		
 		DockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()
-				.withDockerHost("tcp://localhost:2376").withDockerTlsVerify(true)
-				.withDockerCertPath("/home/user/.docker").withRegistryUsername(registryUser)
-				.withRegistryPassword(registryPass).withRegistryEmail(registryMail).withRegistryUrl(registryUrl)
+				.withDockerHost("unix:///var/run/docker.sock").withDockerTlsVerify(true)
 				.build();
 		// using jaxrs/jersey implementation here (netty impl is also available)
 		DockerCmdExecFactory dockerCmdExecFactory = new JerseyDockerCmdExecFactory().withReadTimeout(1000)
