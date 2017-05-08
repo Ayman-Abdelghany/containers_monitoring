@@ -1,0 +1,7 @@
+---
+# ansible-playbook -i "localhost," -c local deploy/test.yml
+- hosts: "{{ target }}"
+
+  roles:
+    - role: my_external_role
+      become: yes
