@@ -1,0 +1,9 @@
+[windows]
+ec2-54-244-193-60.us-west-2.compute.amazonaws.com	
+
+[windows:vars]
+ansible_user=Administrator
+ansible_password=Admin_1986
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore

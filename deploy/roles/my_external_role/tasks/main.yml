@@ -1,0 +1,3 @@
+---
+- name: Copy remote_role.txt file
+  copy: src=remote_role.txt dest=/Users/ayman/dev/remote_role.txt
